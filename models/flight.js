@@ -5,9 +5,7 @@ const Schema = mongoose.Schema
 export {
     Flight
 }
-const destinationSchema = new Schema({
-    
-})
+
 const ticketSchema = new Schema({
     seat: {
         type: String, 
