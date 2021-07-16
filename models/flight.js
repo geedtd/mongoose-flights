@@ -9,7 +9,7 @@ export {
 const ticketSchema = new Schema({
     seat: {
         type: String, 
-        match: /[A-F][1-99]
+        match: /[A-F][1-99]|d?/
     },
     price: {
         type: Number,
@@ -40,7 +40,7 @@ const flightSchema = new Schema({
             return depart.setFullYear(depart.getFullYear() + 1)
         }
     },
-    tickets: [ticketScehma],
+    tickets: [ticketSchema],
 })
 
 const Flight = mongoose.model('Flight', flightSchema)
