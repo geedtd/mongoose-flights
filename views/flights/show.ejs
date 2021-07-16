@@ -14,6 +14,9 @@
   <h1>Airport: <%= flight.airport %></h1>
   <h1>Flight Number: <%= flight.flightNo %></h1>
   <h1>Departure: <%= flight.departs %></h1>
+  <h1>Destinations: <% flight.destinations.forEach(destination => { %>
+<%= destination.airport %>
+<% }) %> </h1>
   <form action="/flights/<%= flight._id %>/tickets" method="POST">
   <input placeholder='Input Seat No (A-F)(1-99)' name="seat" required pattern="[A-F][1-9]\d?">
   <input placeholder='Enter Price' type="number" name='price'>
@@ -24,6 +27,14 @@
     <h2>Seats:<%= ticket.seat %></h2>
     <h2>Price:<%= ticket.price %></h2>
     <% }) %>
+    <form action="/flights/<%= flight._id %>/destinations" method="POST">
+        <select name="destinationId">
+            <% newDestination.forEach(destination => { %>
+                <% console.log(destination) %>
+                <option value="<% destination._id%>"></option><%= destination.aiport %></option>
+                <% }) %>
+        </select>
+    </form>
   </div>
 </body>
 </html>
