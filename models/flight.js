@@ -6,6 +6,17 @@ export {
     Flight
 }
 
+const ticketSchema = new Schema({
+    seat: {
+        type: String, 
+        match: /[A-F][1-99]
+    },
+    price: {
+        type: Number,
+        min: 0
+    }
+})
+
 const flightSchema = new Schema({
     airline: {
         type: String,
@@ -29,6 +40,7 @@ const flightSchema = new Schema({
             return depart.setFullYear(depart.getFullYear() + 1)
         }
     },
+    tickets: [ticketScehma],
 })
 
 const Flight = mongoose.model('Flight', flightSchema)
