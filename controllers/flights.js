@@ -1,4 +1,6 @@
 import { Flight }   from '../models/flight.js'
+import { Destination } from '../models/destination.js'
+
 export {
     newFlight as new,
     create,
