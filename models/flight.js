@@ -9,7 +9,7 @@ export {
 const ticketSchema = new Schema({
     seat: {
         type: String, 
-        match: /[A-F][1-99]|d?/
+        match: /[A-F][1-9]|d?/
     },
     price: {
         type: Number,
