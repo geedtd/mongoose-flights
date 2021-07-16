@@ -18,8 +18,9 @@ const flightSchema = new Schema({
     },
     flightNo: {
         type: Number,
-        minimum: 10,
-        maximum: 9999
+        minimum: [10, 'Must be at least 10, got {VALUE}'],
+        maximum: 9999,
+        required: [true, 'Add a flight']
     },
     departs: {
         type: Date,
@@ -29,4 +30,5 @@ const flightSchema = new Schema({
         }
     },
 })
+
 const Flight = mongoose.model('Flight', flightSchema)
