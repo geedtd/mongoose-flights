@@ -6,10 +6,18 @@ export {
     create,
     index, 
     show, 
-    createTicket
+    createTicket,
+    addDestination
 }
 
-
+function addDestination(req, res){
+    Flight.findById(req.params.id, function (err,flight) {
+        flight.destination.push(req.body.destinationId)
+        flight.save(function(err){
+            res.redirect(`/flights/${flight._id}`)
+        })
+    })
+}
 function createTicket(req, res) {
     Flight.findById(req.params.id, function(err, flight){
         if (err) return res.render('flight/show')
@@ -45,9 +53,13 @@ function newFlight(req, res) {
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id).exec(function (err, flight){
-        res.render('flights/show', {
-            flight: flight
+    Flight.findById(req.params.id).populate('destinations').exec(function (err, flight){
+        Destination.find({_id: {$nin: flight.destinations}},
+        function(err, newDestination){
+            res.render('flights/show', {
+                flight, 
+                newDestination
+            })
         })
     })
 }

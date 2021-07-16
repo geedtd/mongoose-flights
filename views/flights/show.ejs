@@ -31,9 +31,10 @@
         <select name="destinationId">
             <% newDestination.forEach(destination => { %>
                 <% console.log(destination) %>
-                <option value="<% destination._id%>"></option><%= destination.aiport %></option>
+                <option value="<% destination._id%>"><%= destination.airport %></option>
                 <% }) %>
         </select>
+        <button type="submit">Add</button>
     </form>
   </div>
 </body>
