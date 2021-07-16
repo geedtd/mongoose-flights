@@ -8,6 +8,7 @@ export {
 const destinationSchema = new Schema({
     airport: {
         type: String,
+        required: true,
         unique: true
     }
 })

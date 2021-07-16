@@ -5,19 +5,19 @@ export {
     create
 }
 
-function newDestination ( req, res ){
-    Destination.find({}, function(err, destinations) {
-        res.render('destinations/new', {
-            destinations: destinations,
-            err: err,
-        })
-    })
-}
-
 function create(req, res) {
     const destination = new Destination(req.body)
     destination.save(function(err){
         if (err) return res.redirect('destinations/new')
         res.redirect('destinations/new')
+    })
+}
+function newDestination ( req, res ){
+    Destination.find({}, function(err, destinations) {
+        res.render('destinations/new', {
+            title: 'Add Destination',
+            destinations: destinations,
+            err: err,
+        })
     })
 }

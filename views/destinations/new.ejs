@@ -10,11 +10,15 @@
 <body>
   <%- include('../partials/nav.ejs') %> 
   <h1>Destinations</h1>
+  <select>
+    <% destinations.forEach(function(destination){ %> 
+      <option><%= destination.airport %></option>
+      <% }) %> 
+  </select>
   <form action="/destinations" method="POST">
-    <label>Airport:
-        <input type="text" name="airport" placeholder="Enter New Aiport">
-        <input type="submit" value="Add Airport">
-    </label>
+    <label for="airport-input">Airport Name:</label>
+    <input type="text" name="airport">
+    <button type="submit">Add Airport As New Destination</button>
   </form>
 </body>
 </html>

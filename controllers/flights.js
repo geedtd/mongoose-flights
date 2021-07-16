@@ -12,7 +12,7 @@ export {
 
 function addDestination(req, res){
     Flight.findById(req.params.id, function (err,flight) {
-        flight.destination.push(req.body.destinationId)
+        flight.destinations.push(req.body.destinationId)
         flight.save(function(err){
             res.redirect(`/flights/${flight._id}`)
         })
@@ -53,12 +53,15 @@ function newFlight(req, res) {
 }
 
 function show(req, res) {
-    Flight.findById(req.params.id).populate('destinations').exec(function (err, flight){
+    Flight.findById(req.params.id)
+    .populate('destinations')
+    .exec(function (err, flight){
         Destination.find({_id: {$nin: flight.destinations}},
         function(err, newDestination){
             res.render('flights/show', {
-                flight, 
-                newDestination
+                flight: flight, 
+                newDestination: newDestination,
+                err: err
             })
         })
     })
